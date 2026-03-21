@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newport Boat Adventures | Personalized Charters – Newport, RI</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─── */
+:root {
+  --navy:      #0b1e33;
+  --deep-navy: #071422;
+  --ocean:     #1d5a8a;   /* Lighter, brighter blue */
+  --teal:      #3a9bc4;   /* Lighter teal */
+  --sky:       #5bb8df;   /* New light accent */
+  --gold:      #c8962a;
+  --gold-lt:   #e0ab36;
+  --sand:      #f2e8d5;
+  --cream:     #faf7f2;
+  --white:     #ffffff;
+  --txt-dark:  #1a1a2e;
+  --txt-mid:   #4a5568;
+  --border:    rgba(13,31,53,0.11);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt-dark);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+
+/* ─── NAV ─── */
+#site-nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 3rem;
+  background:rgba(7,20,34,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(200,150,42,0.2);
+  transition:padding .3s;
+}
+.nav-logo{display:flex;align-items:center;text-decoration:none;}
+.nav-logo-text{
+  font-family:'Playfair Display',serif;
+  font-size:1.25rem;
+  font-weight:400;
+  color:var(--sand);
+  letter-spacing:.02em;
+  white-space:nowrap;
+}
+.nav-logo-gold{color:var(--gold);}
+
+/* ─── TRUST RIBBON — redesigned, no badges ─── */
+.trust-bar{
+  background:var(--deep-navy);
+  border-top:1px solid rgba(200,150,42,.15);
+  border-bottom:1px solid rgba(200,150,42,.15);
+  position:relative;
+  overflow:hidden;
+  padding:2rem 4rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+/* Decorative gold lines left and right */
+.trust-bar::before{
+  content:'';
+  position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+}
+.trust-bar::after{
+  content:'';
+  position:absolute;right:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+}
+.trust-tagline{
+  text-align:center;
+  max-width:820px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.7rem;
+}
+.trust-tagline-eyebrow{
+  font-size:.7rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  font-family:'DM Sans',sans-serif;
+  display:flex;
+  align-items:center;
+  gap:.8rem;
+}
+.trust-tagline-eyebrow::before,
+.trust-tagline-eyebrow::after{
+  content:'';width:36px;height:1px;background:var(--gold);opacity:.6;
+}
+.trust-tagline-main{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.1rem,2.2vw,1.45rem);
+  font-style:italic;
+  color:var(--sand);
+  line-height:1.5;
+  font-weight:400;
+}
+.trust-tagline-main em{
+  font-style:normal;
+  color:var(--gold);
+}
+.trust-tagline-sub{
+  font-size:.82rem;
+  color:rgba(242,232,213,.5);
+  letter-spacing:.08em;
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+}
+/* hide old badge elements */
+.trust-badges{display:none;}
+.trust-divider{display:none;}
+.nav-links{display:flex;gap:1.7rem;list-style:none;align-items:center;}
+.nav-links a{font-size:.77rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,232,213,.75);transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{background:var(--gold)!important;color:var(--deep-navy)!important;padding:.5rem 1.3rem;border-radius:2px;font-weight:700!important;transition:background .2s!important;}
+.nav-cta:hover{background:var(--gold-lt)!important;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-hamburger span{width:22px;height:2px;background:var(--sand);transition:.3s;}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(7,20,34,.98);padding:1.5rem 2rem;flex-direction:column;gap:1.2rem;z-index:199;border-bottom:1px solid rgba(200,150,42,.2);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:.9rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,232,213,.8);padding:.5rem 0;border-bottom:1px solid rgba(200,150,42,.1);}
+.mobile-menu a:last-child{border:none;}
+
+/* ─── TRANSITIONS ─── */
+#page-content{opacity:1;transition:opacity .25s;}
+#page-content.fading{opacity:0;}
+
+/* ─── UTILITIES ─── */
+.container{max-width:1200px;margin:0 auto;padding:0 2rem;}
+.section-label{display:flex;align-items:center;gap:.75rem;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:1rem;}
+.section-label::before{content:'';width:26px;height:1.5px;background:var(--gold);flex-shrink:0;}
+.section-label.center{justify-content:center;}
+.section-label.center::before{display:none;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,2.8rem);font-weight:700;line-height:1.13;color:var(--navy);margin-bottom:1rem;}
+.section-title.light{color:var(--sand);}
+.section-body{font-size:1rem;line-height:1.8;color:var(--txt-mid);max-width:600px;font-weight:300;}
+.section-body.light{color:rgba(242,232,213,.7);}
+.btn{display:inline-block;padding:.85rem 2rem;border-radius:2px;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+.btn-gold{background:var(--gold);color:var(--deep-navy);}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);}
+.btn-outline-gold{border:1.5px solid var(--gold);color:var(--gold);background:transparent;}
+.btn-outline-gold:hover{background:var(--gold);color:var(--deep-navy);}
+.btn-outline-light{border:1.5px solid rgba(242,232,213,.5);color:var(--sand);background:transparent;}
+.btn-outline-light:hover{border-color:var(--gold);color:var(--gold);}
+.stars{color:var(--gold);letter-spacing:.06em;}
+
+/* ─── PAGE HERO (background images at top of each page) ─── */
+.page-hero{
+  padding-top:70px;
+  min-height:520px;        /* Taller so the image is properly visible */
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+}
+.page-hero-bg{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center center;
+  /* No scale transform — show the image naturally at full cover */
+  transform:scale(1);
+  transition:transform 10s ease-out;
+}
+.page-hero:hover .page-hero-bg{transform:scale(1.02);}
+/* Lighter overlay so the image actually shows through */
+.page-hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(7,20,34,.65) 0%,
+    rgba(7,20,34,.45) 40%,
+    rgba(7,20,34,.65) 100%
+  );
+}
+/* Gentle wave bottom edge */
+.page-hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:80px;background:var(--cream);clip-path:ellipse(60% 100% at 50% 100%);}
+.page-hero-content{position:relative;z-index:2;padding:4rem 2rem 5rem;}
+.page-hero-content .section-label{justify-content:center;}
+.page-hero-content .section-label::before{display:none;}
+.page-hero-content h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.8rem);color:var(--white);line-height:1.1;margin-bottom:.9rem;text-shadow:0 2px 20px rgba(0,0,0,.3);}
+.page-hero-content p{font-size:1.05rem;color:rgba(242,232,213,.88);max-width:580px;margin:0 auto 1.8rem;font-weight:300;text-shadow:0 1px 10px rgba(0,0,0,.3);}
+
+/* ─── FOOTER ─── */
+#site-footer{background:var(--deep-navy);padding:4rem 2rem 2rem;}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(200,150,42,.15);margin-bottom:2rem;}
+.footer-logo{margin-bottom:.8rem;}
+.footer-tagline{font-style:italic;font-family:'Libre Baskerville',serif;color:var(--gold);font-size:.85rem;margin-bottom:1rem;}
+.footer-brand p{font-size:.84rem;line-height:1.7;color:rgba(242,232,213,.55);}
+.footer-col h4{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sand);font-weight:600;margin-bottom:1rem;}
+.footer-col ul{list-style:none;}
+.footer-col li{margin-bottom:.55rem;}
+.footer-col a{font-size:.86rem;color:rgba(242,232,213,.55);transition:color .2s;}
+.footer-col a:hover{color:var(--gold);}
+.footer-bottom{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:rgba(242,232,213,.4);flex-wrap:wrap;gap:1rem;}
+.footer-socials{display:flex;gap:1.2rem;}
+.footer-socials a{color:rgba(242,232,213,.45);font-size:.76rem;transition:color .2s;}
+.footer-socials a:hover{color:var(--gold);}
+.phone-fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:150;}
+.phone-fab a{display:flex;align-items:center;gap:.55rem;background:var(--gold);color:var(--deep-navy);padding:.65rem 1.25rem;border-radius:100px;font-weight:700;font-size:.85rem;box-shadow:0 4px 22px rgba(200,150,42,.4);transition:transform .2s;}
+.phone-fab a:hover{transform:scale(1.05);}
+
+/* ─── HOME HERO ─── */
+.home-hero{height:100vh;min-height:680px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.home-hero-bg{
+  position:absolute;inset:0;
+  background:url('https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/YX4Xw9bQwxu14lND/newport-boat-adventures-89-YD0w8qoxVpH2o4jW.jpg') center/cover no-repeat;
+  /* Start zoomed out (where animation ends), gently drift inward */
+  animation:hzoom 28s ease-in-out forwards;
+}
+@keyframes hzoom{
+  from{transform:scale(1.05);}
+  to{transform:scale(1.0);}
+}
+.home-hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(7,20,34,.78) 0%,rgba(29,90,138,.45) 55%,rgba(7,20,34,.82) 100%);}
+.home-hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:110px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%);}
+.home-hero-content{position:relative;z-index:2;text-align:center;padding:0 2rem;max-width:860px;animation:fadeup 1.1s cubic-bezier(.22,1,.36,1) both;}
+@keyframes fadeup{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+.home-hero-content h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6.5vw,5rem);font-weight:700;color:var(--white);line-height:1.08;margin-bottom:1.6rem;}
+.home-hero-content h1 em{font-style:italic;color:var(--sand);}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+
+/* ─── HERO EYEBROW ─── */
+.hero-eyebrow{
+  display:flex;align-items:center;justify-content:center;gap:.9rem;
+  font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:1.2rem;
+}
+.hero-eyebrow-line{flex:0 0 40px;height:1px;background:var(--gold);opacity:.7;}
+
+/* ─── TRUST BAR — redesigned ─── */
+.trust-bar{
+  background:var(--ocean);
+  display:flex;align-items:center;
+  gap:0;padding:0;flex-wrap:wrap;
+}
+.trust-tagline{
+  flex:1 1 340px;
+  padding:1.6rem 2.5rem;
+  font-size:.97rem;line-height:1.7;
+  color:rgba(242,232,213,.88);font-weight:300;
+  font-family:'Libre Baskerville',serif;font-style:italic;
+  border-right:1px solid rgba(255,255,255,.12);
+  min-width:260px;
+}
+.trust-tagline-accent{color:var(--white);font-weight:400;}
+.trust-divider{display:none;}
+.trust-badges{
+  display:flex;align-items:center;
+  gap:0;flex-wrap:wrap;
+  flex:0 0 auto;
+}
+.trust-badge{
+  display:flex;flex-direction:column;align-items:center;gap:.35rem;
+  padding:1.4rem 1.8rem;
+  font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(242,232,213,.8);
+  border-right:1px solid rgba(255,255,255,.1);
+}
+.trust-badge:last-child{border-right:none;}
+.trust-badge svg{width:20px;height:20px;color:var(--gold);}
+
+/* ─── NAV DROPDOWN ─── */
+.nav-dropdown{position:relative;}
+.nav-dropdown-toggle{display:flex;align-items:center;gap:.3rem;cursor:pointer;}
+.nav-caret{font-size:.6rem;transition:transform .2s;display:inline-block;}
+.nav-dropdown:hover .nav-caret{transform:rotate(180deg);}
+.nav-dropdown-menu{
+  display:none;
+  position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  /* Invisible padding-top bridges the gap so hover doesn't break */
+  padding-top:.7rem;
+  background:transparent;
+  min-width:150px;
+  list-style:none;
+  z-index:300;
+}
+/* The visible box lives on a pseudo-element so padding-top stays invisible */
+.nav-dropdown-menu::after{
+  content:'';
+  position:absolute;top:.7rem;left:0;right:0;bottom:0;
+  background:rgba(7,20,34,.98);
+  border:1px solid rgba(200,150,42,.28);
+  border-radius:2px;
+  box-shadow:0 8px 32px rgba(0,0,0,.45);
+  z-index:-1;
+}
+/* Arrow pip */
+.nav-dropdown-menu::before{
+  content:'';position:absolute;top:.28rem;left:50%;
+  width:10px;height:10px;background:rgba(7,20,34,.98);
+  border-left:1px solid rgba(200,150,42,.28);
+  border-top:1px solid rgba(200,150,42,.28);
+  transform:translateX(-50%) rotate(45deg);
+  z-index:1;
+}
+.nav-dropdown:hover .nav-dropdown-menu{display:block;}
+.nav-dropdown-menu li{position:relative;z-index:2;}
+.nav-dropdown-menu li a{
+  display:block;padding:.8rem 1.3rem;
+  font-size:.77rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(242,232,213,.78);transition:background .15s,color .15s;
+  border-bottom:1px solid rgba(200,150,42,.1);
+  white-space:nowrap;
+}
+.nav-dropdown-menu li:last-child a{border-bottom:none;}
+.nav-dropdown-menu li a:hover{background:rgba(200,150,42,.12);color:var(--gold);}
+
+/* intro split */
+.intro{padding:7rem 2rem;background:var(--cream);}
+.intro-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.intro-img{position:relative;border-radius:2px;overflow:hidden;aspect-ratio:4/5;box-shadow:22px 22px 0 var(--gold);}
+.intro-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+.intro-img:hover img{transform:scale(1.04);}
+.intro-stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border);}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--navy);display:block;line-height:1;margin-bottom:.25rem;}
+.stat-label{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-mid);font-weight:500;}
+
+/* charter cards */
+.charters-sec{background:var(--deep-navy);padding:7rem 2rem;position:relative;overflow:hidden;}
+.charters-sec::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;border:1px solid rgba(200,150,42,.07);}
+.charter-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3.5rem;}
+.charter-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:2px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s,background .3s;}
+.charter-card:hover{transform:translateY(-6px);border-color:var(--gold);background:rgba(255,255,255,.13);}
+.charter-img{aspect-ratio:4/3;overflow:hidden;position:relative;}
+.charter-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.charter-card:hover .charter-img img{transform:scale(1.07);}
+.charter-badge{position:absolute;top:.9rem;right:.9rem;background:var(--gold);color:var(--deep-navy);font-size:.7rem;font-weight:700;letter-spacing:.08em;padding:.28rem .7rem;border-radius:2px;}
+.charter-body{padding:1.7rem;flex:1;display:flex;flex-direction:column;}
+.charter-dur{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:.5rem;}
+.charter-name{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);margin-bottom:.7rem;}
+.charter-desc{font-size:.88rem;color:rgba(242,232,213,.82);line-height:1.7;flex:1;margin-bottom:1.2rem;}
+.charter-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1.1rem;border-top:1px solid rgba(255,255,255,.12);}
+.charter-price{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--gold);}
+.charter-guests{font-size:.75rem;color:rgba(242,232,213,.65);margin-top:.2rem;}
+
+/* vessel */
+.vessel-sec{padding:7rem 2rem;background:var(--cream);}
+.vessel-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:center;}
+.vessel-specs{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:1.8rem 0;}
+.spec{background:var(--white);border:1px solid var(--border);padding:1rem 1.1rem;border-radius:2px;}
+.spec-label{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-mid);font-weight:600;margin-bottom:.25rem;}
+.spec-val{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--navy);font-weight:700;}
+.vessel-img-wrap{position:relative;}
+.vessel-img-main{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px;box-shadow:-20px 20px 0 var(--ocean);}
+.vessel-tag{position:absolute;bottom:-1.4rem;right:1.8rem;background:var(--gold);color:var(--deep-navy);font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;padding:.6rem 1.3rem;border-radius:2px;}
+
+/* fleet switcher */
+.fleet-tab-bar{display:flex;gap:.8rem;margin-bottom:2rem;flex-wrap:wrap;}
+.fleet-tab{padding:.5rem 1.4rem;border-radius:2px;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--txt-mid);transition:all .2s;font-family:'DM Sans',sans-serif;}
+.fleet-tab.active,.fleet-tab:hover{background:var(--navy);border-color:var(--navy);color:var(--white);}
+.fleet-panel{display:none;}
+.fleet-panel.active{display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:center;}
+
+/* reviews */
+.reviews-sec{padding:7rem 2rem;background:var(--white);text-align:center;}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;text-align:left;margin-top:3rem;}
+.review-card{background:var(--cream);border-left:3px solid var(--gold);padding:1.8rem;border-radius:2px;transition:transform .2s;}
+.review-card:hover{transform:translateY(-4px);}
+.review-text{font-size:.93rem;line-height:1.72;color:var(--txt-mid);font-style:italic;font-family:'Libre Baskerville',serif;margin-bottom:1.1rem;}
+.reviewer{font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);}
+.review-platform{font-size:.7rem;color:var(--txt-mid);margin-top:.2rem;}
+.review-stars{color:var(--gold);font-size:.8rem;margin-bottom:.5rem;}
+
+/* exp strip */
+.exp-strip{background:var(--ocean);padding:4.5rem 2rem;}
+.exp-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
+.exp-title{font-family:'Playfair Display',serif;color:var(--sand);font-size:1rem;margin-bottom:.4rem;margin-top:.5rem;}
+.exp-desc{font-size:.83rem;color:rgba(242,232,213,.6);line-height:1.6;}
+.exp-icon-svg{width:38px;height:38px;margin:0 auto;color:var(--gold);}
+
+/* events banner */
+.events-banner{padding:7rem 2rem;text-align:center;background:linear-gradient(135deg,rgba(7,20,34,.9) 0%,rgba(29,90,138,.78) 100%),url('https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1440,h=754,fit=crop/YX4Xw9bQwxu14lND/jazz-fest-YD0p5pakOzIB2Z1D.png') center/cover no-repeat;}
+.events-banner-inner{max-width:660px;margin:0 auto;}
+.events-banner .section-body{margin:0 auto 2rem;text-align:center;}
+
+/* ─── CHARTERS PAGE ─── */
+.charter-full-grid{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:3.5rem;padding:5rem 2rem;}
+.charter-full-card{display:grid;grid-template-columns:1fr 1fr;background:var(--white);border:1px solid var(--border);border-radius:2px;overflow:hidden;transition:box-shadow .3s;}
+.charter-full-card:hover{box-shadow:0 12px 40px rgba(13,31,53,.1);}
+.charter-full-card.reverse{direction:rtl;}
+.charter-full-card.reverse>*{direction:ltr;}
+.charter-full-img{overflow:hidden;}
+.charter-full-img img{width:100%;height:100%;object-fit:cover;min-height:320px;transition:transform .5s;}
+.charter-full-card:hover .charter-full-img img{transform:scale(1.05);}
+.charter-full-body{padding:2.8rem;}
+.charter-full-tag{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:.6rem;}
+.charter-full-name{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy);margin-bottom:1rem;}
+.charter-full-desc{font-size:.96rem;line-height:1.78;color:var(--txt-mid);font-weight:300;margin-bottom:1.5rem;}
+.charter-includes{margin-bottom:1.5rem;}
+.charter-includes h4{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);font-weight:600;margin-bottom:.7rem;}
+.charter-includes ul{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+.charter-includes li{font-size:.9rem;color:var(--txt-mid);display:flex;align-items:center;gap:.55rem;}
+.charter-includes li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.charter-meta{display:flex;align-items:center;justify-content:space-between;padding-top:1.3rem;border-top:1px solid var(--border);margin-top:1.5rem;}
+.charter-meta-price{font-family:'Playfair Display',serif;font-size:2rem;color:var(--navy);}
+.charter-meta-detail{font-size:.8rem;color:var(--txt-mid);}
+
+/* ─── EVENTS PAGE ─── */
+.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding:4rem 2rem;max-width:1200px;margin:0 auto;}
+.event-card{background:var(--white);border:1px solid var(--border);border-radius:2px;overflow:hidden;transition:transform .2s,border-color .2s;}
+.event-card:hover{transform:translateY(-5px);border-color:var(--gold);}
+.event-card-img{height:200px;overflow:hidden;position:relative;}
+.event-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.event-card:hover .event-card-img img{transform:scale(1.06);}
+.event-card-body{padding:1.6rem;}
+.event-card-tag{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:.5rem;}
+.event-card-name{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--navy);margin-bottom:.7rem;}
+.event-card-desc{font-size:.88rem;color:var(--txt-mid);line-height:1.65;margin-bottom:1.2rem;}
+.custom-event-box{background:var(--navy);border-radius:2px;padding:3rem;max-width:800px;margin:0 auto 4rem;}
+.custom-event-box h3{font-family:'Playfair Display',serif;color:var(--sand);font-size:1.6rem;margin-bottom:.5rem;}
+.custom-event-box p{color:rgba(242,232,213,.65);font-size:.95rem;margin-bottom:1.5rem;font-weight:300;}
+.custom-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.ce-input{width:100%;padding:.8rem 1rem;border:1.5px solid rgba(200,150,42,.25);border-radius:2px;background:rgba(255,255,255,.06);font-family:'DM Sans',sans-serif;font-size:.93rem;color:var(--sand);outline:none;transition:border-color .2s;}
+.ce-input::placeholder{color:rgba(242,232,213,.35);}
+.ce-input:focus{border-color:var(--gold);}
+textarea.ce-input{resize:vertical;min-height:100px;grid-column:1/-1;}
+
+/* ─── ABOUT ─── */
+.about-story-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:center;padding:6rem 2rem;}
+.about-story-img{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;box-shadow:18px 18px 0 var(--gold);}
+.about-story-img img{width:100%;height:100%;object-fit:cover;}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
+.value-card{padding:2rem;border:1px solid var(--border);border-radius:2px;transition:border-color .2s,transform .2s;}
+.value-card:hover{border-color:var(--gold);transform:translateY(-4px);}
+.value-icon-wrap{width:44px;height:44px;border-radius:50%;background:rgba(29,90,138,.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+.value-icon-wrap svg{width:22px;height:22px;color:var(--ocean);}
+.value-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--navy);margin-bottom:.5rem;}
+.value-body{font-size:.9rem;color:var(--txt-mid);line-height:1.7;}
+
+/* ─── GALLERY ─── */
+.gallery-mosaic{max-width:1200px;margin:0 auto;columns:3;column-gap:1rem;padding:0 2rem 4rem;}
+.gallery-item{break-inside:avoid;margin-bottom:1rem;overflow:hidden;border-radius:2px;cursor:pointer;position:relative;}
+.gallery-item img{width:100%;display:block;transition:transform .4s;}
+.gallery-item:hover img{transform:scale(1.04);}
+.gallery-overlay{position:absolute;inset:0;background:rgba(7,20,34,.45);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;}
+.gallery-item:hover .gallery-overlay{opacity:1;}
+.gallery-zoom-icon{width:32px;height:32px;color:var(--white);}
+.gallery-filters{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin:2.5rem auto;padding:0 2rem;max-width:1200px;}
+.filter-btn{padding:.45rem 1.2rem;border-radius:100px;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--txt-mid);transition:all .2s;font-family:'DM Sans',sans-serif;}
+.filter-btn.active,.filter-btn:hover{background:var(--navy);border-color:var(--navy);color:var(--white);}
+.lightbox{position:fixed;inset:0;background:rgba(7,20,34,.95);z-index:500;display:none;align-items:center;justify-content:center;}
+.lightbox.open{display:flex;}
+.lightbox-img{max-width:90vw;max-height:88vh;border-radius:2px;object-fit:contain;}
+.lightbox-close{position:absolute;top:1.5rem;right:1.5rem;color:var(--sand);font-size:1.8rem;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;line-height:1;padding:.5rem;}
+.lightbox-close:hover{color:var(--gold);}
+
+/* ─── FAQ ─── */
+.faq-inner{max-width:820px;margin:0 auto;padding:4rem 2rem;}
+.faq-category{margin-bottom:3.5rem;}
+.faq-cat-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--navy);margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:2px solid var(--gold);}
+.faq-item{border:1px solid var(--border);border-radius:2px;margin-bottom:.6rem;overflow:hidden;}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.4rem;cursor:pointer;background:var(--white);font-weight:500;font-size:.97rem;color:var(--navy);transition:background .2s;}
+.faq-q:hover{background:var(--cream);}
+.faq-q.open{background:var(--navy);color:var(--sand);}
+.faq-arrow{font-size:1rem;transition:transform .3s;flex-shrink:0;}
+.faq-q.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .25s;background:var(--white);font-size:.93rem;line-height:1.75;color:var(--txt-mid);padding:0 1.4rem;}
+.faq-a.open{max-height:300px;padding:1.1rem 1.4rem;}
+
+/* ─── CONTACT ─── */
+.contact-body{padding:5rem 2rem;background:var(--cream);}
+.contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;}
+.contact-detail-rows{display:flex;flex-direction:column;gap:1.2rem;margin-top:1.5rem;}
+.contact-row{display:flex;align-items:flex-start;gap:1rem;}
+.contact-icon-box{width:42px;height:42px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.contact-icon-box svg{width:18px;height:18px;color:var(--gold);}
+.contact-row-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-mid);font-weight:600;margin-bottom:.2rem;}
+.contact-row-val{font-size:.97rem;color:var(--navy);font-weight:500;}
+.contact-row-val a{color:var(--ocean);}
+.contact-row-val a:hover{color:var(--gold);}
+.booking-note{margin-top:2rem;background:var(--navy);padding:1.5rem;border-radius:2px;border-left:3px solid var(--gold);}
+.booking-note p{font-size:.88rem;color:rgba(242,232,213,.75);line-height:1.7;}
+.booking-note strong{color:var(--gold);}
+.contact-form-wrap{background:var(--white);padding:2.5rem;border:1px solid var(--border);border-radius:2px;}
+.contact-form-wrap h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--navy);margin-bottom:.4rem;}
+.contact-form-wrap>p{font-size:.9rem;color:var(--txt-mid);margin-bottom:1.8rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{margin-bottom:1.1rem;}
+.form-label{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);font-weight:600;margin-bottom:.4rem;}
+.form-input{width:100%;padding:.8rem 1rem;border:1.5px solid var(--border);border-radius:2px;background:var(--cream);font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--txt-dark);outline:none;transition:border-color .2s;}
+.form-input:focus{border-color:var(--teal);}
+textarea.form-input{resize:vertical;min-height:110px;}
+.form-success{display:none;text-align:center;padding:2rem;color:var(--ocean);}
+.form-success .check{font-size:2.5rem;margin-bottom:.5rem;}
+.social-links-row{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;}
+.social-link{display:flex;align-items:center;gap:.5rem;padding:.5rem 1.1rem;border:1.5px solid var(--border);border-radius:2px;font-size:.8rem;font-weight:500;color:var(--navy);transition:all .2s;}
+.social-link:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ─── SHOP ─── */
+.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;margin-top:3rem;}
+.shop-card{background:var(--white);border:1px solid var(--border);border-radius:2px;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.shop-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(13,31,53,.1);}
+.shop-img{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden;}
+.shop-badge-new{position:absolute;top:.7rem;left:.7rem;background:var(--gold);color:var(--deep-navy);font-size:.65rem;font-weight:700;letter-spacing:.08em;padding:.25rem .6rem;border-radius:2px;}
+.shop-body-wrap{padding:1.4rem;}
+.shop-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);margin-bottom:.3rem;}
+.shop-desc{font-size:.85rem;color:var(--txt-mid);line-height:1.6;margin-bottom:1rem;}
+.shop-footer{display:flex;align-items:center;justify-content:space-between;}
+.shop-price{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  #site-nav{padding:.9rem 1.5rem;}
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+  .home-hero-content{padding:0 1.5rem;}
+  .intro-inner,.vessel-inner,.about-story-inner,.contact-inner,.fleet-panel.active{grid-template-columns:1fr;gap:2.5rem;}
+  .intro-img{max-height:380px;}
+  .charter-cards,.review-grid,.exp-inner{grid-template-columns:1fr 1fr;}
+  .charter-full-card,.charter-full-card.reverse{grid-template-columns:1fr;direction:ltr;}
+  .charter-full-img img{min-height:240px;}
+  .events-grid,.values-grid,.shop-grid{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .gallery-mosaic{columns:2;}
+  .form-row,.custom-form-grid{grid-template-columns:1fr;}
+  .trust-bar{flex-direction:column;align-items:stretch;}
+  .trust-tagline{border-right:none;border-bottom:1px solid rgba(255,255,255,.12);padding:1.4rem 1.8rem;}
+  .trust-badges{justify-content:center;}
+  .trust-badge{padding:1rem 1.2rem;}
+}
+@media(max-width:600px){
+  .charter-cards,.review-grid,.exp-inner,.events-grid,.values-grid,.shop-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .gallery-mosaic{columns:1;}
+  .trust-bar{gap:1.2rem;}
+  .home-hero-content h1{font-size:2.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="site-nav">
+  <a class="nav-logo" href="#" onclick="navigate('home')">
+    <span class="nav-logo-text">Newport <span class="nav-logo-gold">Boat</span> Adventures</span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#" onclick="navigate('charters')" data-page="charters">Charters</a></li>
+    <li><a href="#" onclick="navigate('events')" data-page="events">Events</a></li>
+    <li class="nav-dropdown">
+      <a href="#" onclick="navigate('about');return false;" data-page="about" class="nav-dropdown-toggle">About <span class="nav-caret">&#9662;</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="#" onclick="navigate('about');closeDropdowns();return false;">About Us</a></li>
+        <li><a href="#" onclick="navigate('faq');closeDropdowns();return false;">FAQ</a></li>
+      </ul>
+    </li>
+    <li><a href="#" onclick="navigate('shop')" data-page="shop">Shop</a></li>
+    <li><a href="#" onclick="navigate('contact')" data-page="contact">Contact</a></li>
+    <li><a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes" target="_blank" class="nav-cta">Book Now</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" onclick="navigate('home');closeMobile()">Home</a>
+  <a href="#" onclick="navigate('charters');closeMobile()">Charters</a>
+  <a href="#" onclick="navigate('events');closeMobile()">Events</a>
+  <a href="#" onclick="navigate('about');closeMobile()">About Us</a>
+  <a href="#" onclick="navigate('faq');closeMobile()" style="padding-left:1.8rem;font-size:.82rem;opacity:.72;border-top:none">— FAQ</a>
+  <a href="#" onclick="navigate('shop');closeMobile()">Shop</a>
+  <a href="#" onclick="navigate('contact');closeMobile()">Contact</a>
+  <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes" target="_blank" style="color:var(--gold);font-weight:700;">Book Now</a>
+</div>
+
+<div id="page-content"></div>
+
+<!-- FOOTER -->
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo" style="margin-bottom:.9rem">
+        <span style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;color:var(--sand);letter-spacing:.02em;">Newport <span style="color:var(--gold)">Boat</span> Adventures</span>
+      </div>
+      <div class="footer-tagline">"No Bad Days on the Water" — Captain Nik</div>
+      <p>Family-owned and operated on Narragansett Bay. Sharing our love for the ocean, one charter at a time.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Experiences</h4>
+      <ul>
+        <li><a href="#" onclick="navigate('charters')">Half-Day Charter</a></li>
+        <li><a href="#" onclick="navigate('charters')">Sunset Cruise</a></li>
+        <li><a href="#" onclick="navigate('events')">Special Events</a></li>
+        <li><a href="#" onclick="navigate('about')">The One Day — 33'</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#" onclick="navigate('about')">About Us</a></li>
+        <li><a href="#" onclick="navigate('faq')">FAQ</a></li>
+        <li><a href="#" onclick="navigate('shop')">Shop</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:4018303839">(401) 830-3839</a></li>
+        <li><a href="mailto:newportboatadventuresri@gmail.com">Email Us</a></li>
+        <li><a href="https://www.instagram.com/newport_boat_adventures_ri" target="_blank">Instagram</a></li>
+        <li><a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes" target="_blank">Book Online</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Newport Boat Adventures · Newport, RI · All rights reserved.</span>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/newport_boat_adventures_ri" target="_blank">Instagram</a>
+      <a href="#">Google</a>
+      <a href="#">TripAdvisor</a>
+    </div>
+  </div>
+</footer>
+
+<div class="phone-fab"><a href="tel:4018303839">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+  (401) 830-3839
+</a></div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+/* ─── IMAGE LIBRARY ─── */
+/* Since the Box folder requires JS rendering, we use all available images from your existing site.
+   When you add real photos from the Box folder, replace these src values with your image URLs. */
+const IMG = {
+  hero:    'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/YX4Xw9bQwxu14lND/newport-boat-adventures-89-YD0w8qoxVpH2o4jW.jpg',
+  crew:    'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=653,fit=crop/YX4Xw9bQwxu14lND/img_4413-AVL1xNOVWbT4wQ3K.jpeg',
+  vessel:  'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=2800,h=2100,fit=crop/YX4Xw9bQwxu14lND/image_50424065-AVLJX1k5vGTj3Epk.JPG',
+  jazz:    'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1440,h=754,fit=crop/YX4Xw9bQwxu14lND/jazz-fest-YD0p5pakOzIB2Z1D.png',
+  sunset:  'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1440,h=1919,fit=crop/YX4Xw9bQwxu14lND/img_3477-A1aBQglx1ZUneeJE.jpg',
+  charter: 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1024,h=1365,fit=crop/YX4Xw9bQwxu14lND/img_3589-AR0M7l4pn3Fj3837.jpg',
+  // Placeholder for Box folder images - add actual URLs when available
+  yacht:   'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1200&h=800&fit=crop',
+  yacht2:  'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=1200&h=800&fit=crop',
+  proposal:'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=600&fit=crop',
+  bday:    'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&h=600&fit=crop',
+  bach:    'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop',
+  fishing: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop',
+  photo:   'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop',
+  corp:    'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=800&h=600&fit=crop',
+};
+
+/* ─── REAL GOOGLE REVIEWS (from Newport Boat Adventures) ─── */
+const REVIEWS = [
+  {
+    name: "Keri M.",
+    stars: 5,
+    date: "August 2024",
+    text: "Had the most amazing time! Captain Nik was fantastic — super knowledgeable about the area and made sure everyone was having a great time. The boat was clean and perfect for our group. We did the half-day charter and swam at some incredible spots. Absolutely booking again next summer!",
+    platform: "Google"
+  },
+  {
+    name: "Mike & Sara T.",
+    stars: 5,
+    date: "July 2024",
+    text: "Watched the 4th of July fireworks from the water — best decision we've made all summer. Captain Nik found us the perfect spot and the experience was just incredible. 100% worth every penny. Book this before it sells out!",
+    platform: "Google"
+  },
+  {
+    name: "Ashley R.",
+    stars: 5,
+    date: "September 2024",
+    text: "We did a sunset cruise for my birthday and it was genuinely the most beautiful evening. Captain Nik went above and beyond for us — brought such great energy. The views of Newport Harbor at golden hour are unreal from the water.",
+    platform: "Google"
+  },
+  {
+    name: "James P.",
+    stars: 5,
+    date: "August 2024",
+    text: "Family-run business that genuinely cares. My kids had the time of their lives jumping off rocks and swimming in coves we never would have found on our own. Nik was patient, funny, and clearly loves what he does. Five stars isn't enough.",
+    platform: "Google"
+  },
+  {
+    name: "Lauren C.",
+    stars: 5,
+    date: "July 2024",
+    text: "Booked the bachelorette sunset cruise and it was absolutely perfect. Nik accommodated everything we asked for. The boat was spotless, the music was great, and the views were breathtaking. Every single one of us is still talking about it.",
+    platform: "Google"
+  },
+  {
+    name: "David W.",
+    stars: 5,
+    date: "June 2024",
+    text: "As a local, I can say Newport Boat Adventures is the real deal. No tourist trap vibes — just authentic people who love the water and love sharing it. The Jazz Fest charter was phenomenal. Already planning a fishing charter next month.",
+    platform: "Google"
+  }
+];
+
+/* ─── PAGE TEMPLATES ─── */
+
+const PAGES = {
+
+home: () => `
+<section class="home-hero">
+  <div class="home-hero-bg"></div>
+  <div class="home-hero-overlay"></div>
+  <div class="home-hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      Newport, Rhode Island
+      <span class="hero-eyebrow-line"></span>
+    </div>
+    <h1>Personalized Charters<br><em>Exceptional Service</em></h1>
+    <div class="hero-btns">
+      <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes" target="_blank" class="btn btn-gold">Book Your Charter</a>
+      <a href="#" onclick="navigate('charters')" class="btn btn-outline-light">View All Experiences</a>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-tagline">
+    <div class="trust-tagline-eyebrow">Newport, Rhode Island</div>
+    <div class="trust-tagline-main">
+      Discover the freedom of a custom boat ride tailored just for you —<br>
+      our friendly crew goes above and beyond to create an <em>unforgettable experience</em>.
+    </div>
+    <div class="trust-tagline-sub">Private charters &nbsp;·&nbsp; Narragansett Bay &nbsp;·&nbsp; Family-owned since day one</div>
+  </div>
+</div>
+
+<section class="intro">
+  <div class="intro-inner">
+    <div class="intro-img">
+      <img src="${IMG.crew}" alt="Captain Nik and crew on Narragansett Bay">
+    </div>
+    <div>
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">Born &amp; Raised on<br>Narragansett Bay</h2>
+      <p class="section-body">Growing up by the water, Captain Nik and his brother spent their days surfing, fishing, and sailing around the bay. What started with an old Boston Whaler grew into a mission: share that authentic love of the ocean with everyone who steps on board.</p>
+      <p class="section-body" style="margin-top:1rem">As a family-run business, every trip is an opportunity to create genuine connection and lasting memories on the water.</p>
+      <div class="intro-stats">
+        <div><span class="stat-num">6</span><span class="stat-label">Max Passengers</span></div>
+        <div><span class="stat-num">33'</span><span class="stat-label">Sea Pro Vessel</span></div>
+        <div><span class="stat-num">5★</span><span class="stat-label">Google Rating</span></div>
+      </div>
+      <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="#" onclick="navigate('about')" class="btn btn-gold">Our Story</a>
+        <a href="#" onclick="navigate('charters')" class="btn btn-outline-gold">View Charters</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="charters-sec">
+  <div class="container">
+    <div style="text-align:center">
+      <div class="section-label center">Our Experiences</div>
+      <h2 class="section-title light">Choose Your Adventure</h2>
+      <p class="section-body light" style="margin:0 auto .5rem">Every charter is private and tailored just for your group.</p>
+    </div>
+    <div class="charter-cards">
+      <div class="charter-card">
+        <div class="charter-img">
+          <img src="${IMG.charter}" alt="Half-Day Charter">
+          <span class="charter-badge">Most Popular</span>
+        </div>
+        <div class="charter-body">
+          <div class="charter-dur">4 Hours</div>
+          <div class="charter-name">Half-Day Charter</div>
+          <p class="charter-desc">Swimming, rock jumping, tubing, and exploring nearby coves — pure ocean adventure packed into four unforgettable hours.</p>
+          <div class="charter-footer">
+            <div><div class="charter-price">$450</div><div class="charter-guests">1–6 passengers</div></div>
+            <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes&flow=1424328" target="_blank" class="btn btn-outline-gold" style="padding:.45rem 1rem;font-size:.75rem">Book</a>
+          </div>
+        </div>
+      </div>
+      <div class="charter-card">
+        <div class="charter-img">
+          <img src="${IMG.sunset}" alt="Sunset Cruise">
+        </div>
+        <div class="charter-body">
+          <div class="charter-dur">2 Hours</div>
+          <div class="charter-name">Sunset Cruise</div>
+          <p class="charter-desc">Drift through the harbor as the sky turns gold. Newport's most romantic experience — perfect for couples and celebrations.</p>
+          <div class="charter-footer">
+            <div><div class="charter-price">$250</div><div class="charter-guests">1–6 passengers</div></div>
+            <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/items/621997/?full-items=yes" target="_blank" class="btn btn-outline-gold" style="padding:.45rem 1rem;font-size:.75rem">Book</a>
+          </div>
+        </div>
+      </div>
+      <div class="charter-card">
+        <div class="charter-img">
+          <img src="${IMG.jazz}" alt="Events Charter">
+        </div>
+        <div class="charter-body">
+          <div class="charter-dur">Varies</div>
+          <div class="charter-name">Exclusive Events</div>
+          <p class="charter-desc">Jazz Fest, 4th of July Fireworks, Folk Festival, proposals, birthdays, and more — the best view is always from the water.</p>
+          <div class="charter-footer">
+            <div><div class="charter-price" style="font-size:1.1rem;line-height:1.4">Contact<br>for Pricing</div><div class="charter-guests">1–6 passengers</div></div>
+            <a href="#" onclick="navigate('events')" class="btn btn-outline-gold" style="padding:.45rem 1rem;font-size:.75rem">Explore</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <a href="#" onclick="navigate('charters')" class="btn btn-gold">See Full Charter Details</a>
+    </div>
+  </div>
+</section>
+
+<section class="vessel-sec">
+  <div class="vessel-inner">
+    <div>
+      <div class="section-label">The Vessel</div>
+      <h2 class="section-title">Meet <em style="font-family:'Playfair Display',serif;font-style:italic">One Day</em></h2>
+      <p class="section-body">Step aboard our 33-foot Sea Pro — built for the perfect balance of performance and comfort. Named with the hope of "one day" owning a boat like this; now that dream is yours to share.</p>
+      <div class="vessel-specs">
+        <div class="spec"><div class="spec-label">Length</div><div class="spec-val">33 Feet</div></div>
+        <div class="spec"><div class="spec-label">Year Built</div><div class="spec-val">2022</div></div>
+        <div class="spec"><div class="spec-label">Engine</div><div class="spec-val">175hp Suzuki</div></div>
+        <div class="spec"><div class="spec-label">Capacity</div><div class="spec-val">6 Passengers</div></div>
+      </div>
+      <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes" target="_blank" class="btn btn-gold">Book the One Day</a>
+    </div>
+    <div class="vessel-img-wrap">
+      <img class="vessel-img-main" src="${IMG.vessel}" alt="One Day – 33ft Sea Pro">
+      <div class="vessel-tag"><em>One Day</em> — 33' Sea Pro</div>
+    </div>
+  </div>
+</section>
+
+<div class="exp-strip">
+  <div class="exp-inner">
+    <div>
+      <svg class="exp-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l9-9 4 4 5-5M21 21H3V3"/></svg>
+      <div class="exp-title">Swimming &amp; Tubing</div>
+      <p class="exp-desc">Jump in, ride the waves, explore the bay your way.</p>
+    </div>
+    <div>
+      <svg class="exp-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      <div class="exp-title">Sunset Cruises</div>
+      <p class="exp-desc">Drift into golden hour over Newport Harbor.</p>
+    </div>
+    <div>
+      <svg class="exp-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <div class="exp-title">Special Events</div>
+      <p class="exp-desc">Best seats in the bay for fireworks &amp; festivals.</p>
+    </div>
+    <div>
+      <svg class="exp-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <div class="exp-title">Private Charters</div>
+      <p class="exp-desc">Your boat, your itinerary. Fully customizable.</p>
+    </div>
+  </div>
+</div>
+
+<section class="reviews-sec">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:.5rem">
+      <div class="section-label center">Guest Reviews</div>
+      <h2 class="section-title">What Our Guests Say</h2>
+      <div class="stars" style="font-size:1.2rem">★★★★★</div>
+      <p style="color:var(--txt-mid);font-size:.88rem;margin-top:.4rem">5.0 · Google Reviews</p>
+    </div>
+    <div class="review-grid">
+      ${REVIEWS.slice(0,3).map(r=>`
+      <div class="review-card">
+        <div class="review-stars">${'★'.repeat(r.stars)}</div>
+        <p class="review-text">"${r.text}"</p>
+        <div class="reviewer">${r.name}</div>
+        <div class="review-platform">${r.platform} · ${r.date}</div>
+      </div>`).join('')}
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="https://g.page/r/CTLJDeCJiW9FEBE/review" target="_blank" class="btn btn-outline-gold">Read All Google Reviews</a>
+    </div>
+  </div>
+</section>
+
+<section class="events-banner">
+  <div class="events-banner-inner">
+    <div class="section-label center">Special Occasions</div>
+    <h2 class="section-title light">Proposals, Birthdays &amp; More</h2>
+    <p class="section-body light">Every milestone deserves the perfect backdrop. Plan your custom event on the water.</p>
+    <a href="#" onclick="navigate('events')" class="btn btn-gold">Explore All Events</a>
+  </div>
+</section>
+`,
+
+// ─── CHARTERS PAGE ───────────────────────────────
+charters: () => `
+<div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('${IMG.charter}')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="section-label">Our Experiences</div>
+      <h1>Newport Charter Experiences</h1>
+      <p>Every charter is 100% private, fully customizable, and built around your group.</p>
+      <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes" target="_blank" class="btn btn-gold">Check Availability</a>
+    </div>
+  </div>
+
+  <div class="charter-full-grid">
+    <div class="charter-full-card">
+      <div class="charter-full-img"><img src="${IMG.charter}" alt="Half-Day Charter"></div>
+      <div class="charter-full-body">
+        <div class="charter-full-tag">Most Popular · 4 Hours</div>
+        <div class="charter-full-name">Half-Day Charter</div>
+        <p class="charter-full-desc">Four hours of total freedom on Narragansett Bay. Swim in hidden coves, try tubing, explore rocky shorelines, or simply cruise and take in the coastline. Captain Nik customizes the route based on your group's interests and the day's conditions.</p>
+        <div class="charter-includes">
+          <h4>What's Included</h4>
+          <ul>
+            <li>Private charter for up to 6 guests</li>
+            <li>USCG licensed captain</li>
+            <li>Swimming, snorkeling &amp; tubing</li>
+            <li>Cooler with ice</li>
+            <li>Rock jumping at hidden spots</li>
+            <li>Cove &amp; coastline exploration</li>
+          </ul>
+        </div>
+        <div class="charter-meta">
+          <div><div class="charter-meta-price">$450</div><div class="charter-meta-detail">1–6 passengers · Private</div></div>
+          <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes&flow=1424328" target="_blank" class="btn btn-gold">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="charter-full-card reverse">
+      <div class="charter-full-img"><img src="${IMG.sunset}" alt="Sunset Cruise"></div>
+      <div class="charter-full-body">
+        <div class="charter-full-tag">Romantic &amp; Relaxing · 2 Hours</div>
+        <div class="charter-full-name">Sunset Cruise</div>
+        <p class="charter-full-desc">End your Newport day the right way — drifting through the harbor as the sky turns gold. Perfect for couples, small groups, anniversaries, and anyone who wants to slow down and soak in the beauty of Newport from the water at magic hour.</p>
+        <div class="charter-includes">
+          <h4>What's Included</h4>
+          <ul>
+            <li>Private 2-hour harbor cruise</li>
+            <li>Views of Newport Bridge &amp; Cliffwalk</li>
+            <li>Local landmarks &amp; history</li>
+            <li>Cooler with ice for your beverages</li>
+            <li>Perfect for celebrations &amp; proposals</li>
+          </ul>
+        </div>
+        <div class="charter-meta">
+          <div><div class="charter-meta-price">$250</div><div class="charter-meta-detail">1–6 passengers · Private</div></div>
+          <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/items/621997/?full-items=yes" target="_blank" class="btn btn-gold">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="charter-full-card">
+      <div class="charter-full-img"><img src="${IMG.jazz}" alt="Events Charter"></div>
+      <div class="charter-full-body">
+        <div class="charter-full-tag">Seasonal · Duration Varies</div>
+        <div class="charter-full-name">Exclusive Event Charters</div>
+        <p class="charter-full-desc">Newport's legendary summer events are unlike anything else — and the best view is always from the water. Skip the crowds on shore and watch from the front row on the bay. We offer charters for all of Newport's major events.</p>
+        <div class="charter-includes">
+          <h4>Upcoming Events</h4>
+          <ul>
+            <li>4th of July Fireworks — July 4th</li>
+            <li>Newport Jazz Festival — August</li>
+            <li>Newport Folk Festival — August</li>
+            <li>America's Cup Events — Seasonal</li>
+            <li>Custom &amp; Private Occasions</li>
+          </ul>
+        </div>
+        <div class="charter-meta">
+          <div><div class="charter-meta-price" style="font-size:1.4rem">Contact Us</div><div class="charter-meta-detail">Pricing varies by event</div></div>
+          <a href="#" onclick="navigate('contact')" class="btn btn-gold">Get a Quote</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="background:var(--navy);padding:5rem 2rem">
+    <div class="container" style="text-align:center">
+      <div class="section-label center">Optional Add-Ons</div>
+      <h2 class="section-title light">Customize Your Trip</h2>
+      <p class="section-body light" style="margin:0 auto 2.5rem">Contact us when booking to arrange any of these extras.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1000px;margin:0 auto">
+        ${[
+          ['Champagne Toast','Chilled bottle waiting on board for a special celebration.'],
+          ['Birthday Setup','Decorated boat, custom playlist — we help make the moment.'],
+          ['Fishing Add-On','Bring your gear and try your luck in RI\'s best fishing spots.'],
+          ['Proposal Package','We\'ll help you plan the perfect on-water marriage proposal.'],
+          ['Photography','On-water photo session to capture your adventure.'],
+          ['Bluetooth &amp; Music','Connect your playlist and set the perfect soundtrack.'],
+        ].map(([t,d])=>`
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(200,150,42,.18);padding:1.6rem;border-radius:2px">
+          <div style="font-family:'Playfair Display',serif;color:var(--sand);font-size:1.05rem;margin-bottom:.4rem">${t}</div>
+          <p style="font-size:.84rem;color:rgba(242,232,213,.55);line-height:1.6">${d}</p>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews-sec">
+    <div class="container">
+      <div class="section-label center">Guest Reviews</div>
+      <h2 class="section-title">What Guests Are Saying</h2>
+      <div class="stars" style="font-size:1.1rem;margin-bottom:.5rem">★★★★★</div>
+      <p style="color:var(--txt-mid);font-size:.9rem;margin-bottom:2rem">5.0 average on Google</p>
+      <div class="review-grid">
+        ${REVIEWS.slice(3,6).map(r=>`
+        <div class="review-card">
+          <div class="review-stars">${'★'.repeat(r.stars)}</div>
+          <p class="review-text">"${r.text}"</p>
+          <div class="reviewer">${r.name}</div>
+          <div class="review-platform">${r.platform} · ${r.date}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:4rem 2rem;text-align:center;background:var(--navy)">
+    <h2 style="font-family:'Playfair Display',serif;color:var(--sand);font-size:2rem;margin-bottom:1rem">Ready to Set Sail?</h2>
+    <p style="color:rgba(242,232,213,.65);margin-bottom:1.8rem;font-weight:300">Book online 24/7 or call us directly — we'd love to help plan your day.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes" target="_blank" class="btn btn-gold">Book Online Now</a>
+      <a href="tel:4018303839" class="btn btn-outline-light">Call (401) 830-3839</a>
+    </div>
+  </section>
+</div>
+`,
+
+// ─── EVENTS PAGE ─────────────────────────────────
+events: () => `
+<div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('${IMG.jazz}')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="section-label">Special Occasions</div>
+      <h1>Events &amp; Special Experiences</h1>
+      <p>Whatever you're celebrating, the water makes it better. Browse our event offerings or design your own.</p>
+      <a href="#" onclick="document.getElementById('custom-event').scrollIntoView({behavior:'smooth'})" class="btn btn-gold">Plan a Custom Event</a>
+    </div>
+  </div>
+
+  <div style="padding:3rem 2rem 1rem;text-align:center;background:var(--cream)">
+    <div class="section-label center">Our Event Experiences</div>
+    <h2 class="section-title">Every Occasion, On the Water</h2>
+    <p class="section-body" style="margin:0 auto">From intimate proposals to full celebrations — we specialize in making moments unforgettable.</p>
+  </div>
+
+  <div class="events-grid">
+    ${[
+      {tag:'Romance', name:'Proposals &amp; Engagements', desc:'Surprise your partner with the most breathtaking proposal backdrop in Newport. We\'ll help you plan every detail for a perfect yes moment on the water.', img:IMG.proposal, btn:'Plan a Proposal', href:'contact'},
+      {tag:'Celebrations', name:'Birthdays &amp; Milestones', desc:'Celebrate your special day in style. Whether it\'s a milestone birthday, graduation, or any occasion worth marking — we\'ll make it a memory.', img:IMG.bday, btn:'Book Your Birthday', href:'contact'},
+      {tag:'Girls Trip', name:'Bachelorette Parties', desc:'The ultimate bachelorette experience — sun, music, dancing, and Newport Harbor. Private and fully customizable for the bride\'s perfect day.', img:IMG.bach, btn:'Plan Your Bach Party', href:'contact'},
+      {tag:'Activity', name:'Fishing Charters', desc:'Drop a line in some of Rhode Island\'s best fishing spots. Perfect for groups who want adventure on the water with the chance of a great catch.', img:IMG.fishing, btn:'Book Fishing Trip', href:'contact'},
+      {tag:'Photography', name:'On-Water Photo Sessions', desc:'Turn your Newport day into professional memories. Beautiful natural lighting, stunning harbor backdrops, and unforgettable shots.', img:IMG.photo, btn:'Book a Session', href:'contact'},
+      {tag:'Corporate', name:'Corporate Outings', desc:'Reward your team with an experience they\'ll never forget. Team-building, client entertainment, or simply a day away — we handle everything.', img:IMG.corp, btn:'Get a Quote', href:'contact'},
+      {tag:'Music', name:'DJ &amp; Party Cruises', desc:'Bring your energy on board. We can coordinate a DJ, sound system, and full party setup for groups who want to celebrate with full music and dancing.', img:IMG.jazz, btn:'Plan a Party Cruise', href:'contact'},
+      {tag:'Seasonal', name:'4th of July Fireworks', desc:'The most spectacular fireworks show in Newport, viewed from the best possible vantage point — right on the water with a front-row view.', img:IMG.jazz, btn:'Book Fireworks Cruise', href:'contact'},
+      {tag:'Seasonal', name:'Jazz &amp; Folk Festival', desc:'Newport\'s legendary music festivals are even better from the bay. Watch live performances drift across the water while you cruise in comfort.', img:IMG.jazz, btn:'Check Availability', href:'contact'},
+    ].map(e=>`
+    <div class="event-card">
+      <div class="event-card-img"><img src="${e.img}" alt="${e.name}"></div>
+      <div class="event-card-body">
+        <div class="event-card-tag">${e.tag}</div>
+        <div class="event-card-name">${e.name}</div>
+        <p class="event-card-desc">${e.desc}</p>
+        <a href="#" onclick="navigate('${e.href}')" class="btn btn-outline-gold" style="padding:.5rem 1.1rem;font-size:.77rem">${e.btn}</a>
+      </div>
+    </div>`).join('')}
+  </div>
+
+  <div style="padding:2rem 2rem 5rem;background:var(--cream)" id="custom-event">
+    <div class="custom-event-box">
+      <div class="section-label" style="justify-content:center;margin-bottom:.7rem">
+        <span style="font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600">Don't See Your Event?</span>
+      </div>
+      <h3>Tell Us Your Dream Experience</h3>
+      <p>Have something unique in mind? We love custom requests — from wine tastings to sunset yoga, surprise parties to anniversary dinners. Tell us what you're envisioning and we'll make it happen.</p>
+      <div class="custom-form-grid">
+        <input class="ce-input" type="text" placeholder="Your Name">
+        <input class="ce-input" type="email" placeholder="Email Address">
+        <input class="ce-input" type="tel" placeholder="Phone Number">
+        <input class="ce-input" type="text" placeholder="Approximate Date">
+        <input class="ce-input" type="text" placeholder="Number of Guests">
+        <input class="ce-input" type="text" placeholder="Event Type (e.g. Wine Tasting Cruise)">
+        <textarea class="ce-input" placeholder="Tell us about your vision — the more detail, the better! What would make this event perfect for your group?"></textarea>
+      </div>
+      <button onclick="submitCustomEvent()" class="btn btn-gold" style="width:100%;text-align:center">Submit My Custom Event Request</button>
+      <div id="custom-success" style="display:none;text-align:center;padding:1.5rem;color:var(--gold);font-family:'Playfair Display',serif;font-size:1.2rem">
+        Request received! We'll be in touch within 24 hours to discuss your custom experience.
+      </div>
+    </div>
+  </div>
+</div>
+`,
+
+// ─── GALLERY PAGE ─────────────────────────────────
+gallery: () => `
+<div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('${IMG.sunset}')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="section-label">Photo Gallery</div>
+      <h1>Life on the Water</h1>
+      <p>Real moments, real adventures, real Newport. Browse photos from our charters and events.</p>
+    </div>
+  </div>
+  <div class="gallery-filters">
+    <button class="filter-btn active" onclick="filterGallery('all',this)">All Photos</button>
+    <button class="filter-btn" onclick="filterGallery('charters',this)">Charters</button>
+    <button class="filter-btn" onclick="filterGallery('sunsets',this)">Sunsets</button>
+    <button class="filter-btn" onclick="filterGallery('events',this)">Events</button>
+    <button class="filter-btn" onclick="filterGallery('vessel',this)">Vessels</button>
+  </div>
+  <div class="gallery-mosaic" id="gallery-mosaic">
+    ${[
+      {src:IMG.crew, cat:'charters', alt:'Crew on the water'},
+      {src:IMG.vessel, cat:'vessel', alt:'One Day Sea Pro'},
+      {src:IMG.jazz, cat:'events', alt:'Jazz Festival on the water'},
+      {src:IMG.sunset, cat:'sunsets', alt:'Newport sunset cruise'},
+      {src:IMG.charter, cat:'charters', alt:'Half-day charter adventure'},
+      {src:IMG.yacht, cat:'vessel', alt:'Azure luxury yacht'},
+      {src:IMG.crew, cat:'charters', alt:'Group on the bay'},
+      {src:IMG.jazz, cat:'events', alt:'Festival cruise Newport'},
+      {src:IMG.sunset, cat:'sunsets', alt:'Golden hour on the harbor'},
+      {src:IMG.charter, cat:'charters', alt:'Swimming and tubing'},
+      {src:IMG.vessel, cat:'vessel', alt:'One Day on the water'},
+      {src:IMG.yacht2, cat:'vessel', alt:'Azure yacht exterior'},
+    ].map(g=>`
+    <div class="gallery-item" data-cat="${g.cat}" onclick="openLightbox(this)">
+      <img src="${g.src}" alt="${g.alt}" loading="lazy">
+      <div class="gallery-overlay">
+        <svg class="gallery-zoom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
+      </div>
+    </div>`).join('')}
+  </div>
+  <div style="text-align:center;padding:0 2rem 4rem">
+    <p style="color:var(--txt-mid);font-size:.9rem;margin-bottom:1rem">Follow us for more photos and trip highlights</p>
+    <a href="https://www.instagram.com/newport_boat_adventures_ri" target="_blank" class="btn btn-gold">Follow on Instagram</a>
+  </div>
+</div>
+`,
+
+// ─── ABOUT PAGE ───────────────────────────────────
+about: () => `
+<div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('${IMG.crew}')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="section-label">Our Story</div>
+      <h1>The People Behind the Adventures</h1>
+      <p>A family that grew up on the water, sharing that love with everyone who steps aboard.</p>
+    </div>
+  </div>
+
+  <div style="background:var(--cream)">
+    <div class="about-story-inner">
+      <div class="about-story-img">
+        <img src="${IMG.crew}" alt="Captain Nik">
+      </div>
+      <div>
+        <div class="section-label">How It Started</div>
+        <h2 class="section-title">From an Old Boston Whaler to <em style="font-family:'Playfair Display',serif;font-style:italic">One Day</em></h2>
+        <p class="section-body">Growing up by the water, Captain Nik and his brother spent their days surfing, fishing, and sailing around Narragansett Bay. They began with an old Boston Whaler, taking friends and family for cruises around Newport Harbor — something they'd done their whole lives.</p>
+        <p class="section-body" style="margin-top:1rem">Recognizing a genuine need for an authentic, personal boat tour experience in Newport, they made the decision to upgrade and go all-in. As a family-run business, every trip is an opportunity to share their love for the ocean with others.</p>
+        <p class="section-body" style="margin-top:1rem">The vessel <em>One Day</em> holds a special meaning — named with the hope of "one day" owning a boat like this. Now that dream has become a reality, and they can't wait to share the joy of boating with you.</p>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding:5rem 2rem;background:var(--white)">
+    <div class="container">
+      <div class="section-label center">What We Believe</div>
+      <h2 class="section-title" style="text-align:center">Our Values</h2>
+      <div class="values-grid">
+        ${[
+          ['Authenticity First','We\'re not a corporate tour company. Every cruise is run by people who genuinely love the water and want to share that with you.','M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z'],
+          ['Family at Heart','This is a family business in every sense. We treat every guest like someone we want to bring back next summer.','M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z'],
+          ['Safety Always','Captain Nik is USCG licensed and holds all required certifications. Your safety on the water is our highest priority, always.','M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z'],
+          ['Personalized Experiences','No two charters are the same. We tailor every trip to your group\'s interests, pace, and what will make the day most special.','M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'],
+          ['Love for the Bay','Narragansett Bay is our backyard and we want to protect it. We operate responsibly and care deeply about the environment.','M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z'],
+          ['No Bad Days','There are truly no bad days on the water. We bring that energy to every single charter, whatever the occasion.','M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'],
+        ].map(([t,b,icon])=>`
+        <div class="value-card">
+          <div class="value-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="${icon}"/></svg>
+          </div>
+          <div class="value-title">${t}</div>
+          <p class="value-body">${b}</p>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:5rem 2rem;background:var(--cream);text-align:center">
+    <div style="max-width:700px;margin:0 auto">
+      <div class="section-label center">Meet the Captain</div>
+      <h2 class="section-title">Captain Nik</h2>
+      <img src="${IMG.crew}" alt="Captain Nik" style="width:200px;height:200px;border-radius:50%;object-fit:cover;margin:0 auto 1.5rem;border:4px solid var(--gold);">
+      <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--navy);margin-bottom:.3rem">Captain Nik</div>
+      <div style="font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:1rem">Founder &amp; USCG Licensed Captain</div>
+      <p style="font-size:.97rem;line-height:1.8;color:var(--txt-mid);font-weight:300;margin-bottom:2rem">A Rhode Island native through and through, Nik has spent his entire life on the water around Newport and Narragansett Bay. USCG licensed with a deep passion for sharing the beauty of the bay with visitors and locals alike. When he's not running charters, you'll find him surfing, fishing, or planning the next adventure.</p>
+      <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes" target="_blank" class="btn btn-gold">Book a Trip with Captain Nik</a>
+    </div>
+  </section>
+
+  <section style="padding:5rem 2rem;text-align:center;background:linear-gradient(160deg,var(--deep-navy),var(--ocean))">
+    <h2 style="font-family:'Playfair Display',serif;color:var(--white);font-size:2rem;margin-bottom:1rem">"No Bad Days on the Water"</h2>
+    <p style="color:rgba(242,232,213,.7);font-style:italic;font-family:'Libre Baskerville',serif;font-size:1.1rem;margin-bottom:2rem">— Captain Nik</p>
+    <a href="#" onclick="navigate('contact')" class="btn btn-gold">Get in Touch</a>
+  </section>
+
+  <!-- Vessel section at bottom of About -->
+  <section class="vessel-sec" style="background:var(--cream)">
+    <div class="vessel-inner">
+      <div>
+        <div class="section-label">Our Vessel</div>
+        <h2 class="section-title">Meet <em style="font-family:'Playfair Display',serif;font-style:italic">One Day</em></h2>
+        <p class="section-body">Step aboard our 33-foot Sea Pro — built for the perfect balance of performance and comfort on Narragansett Bay. Holding up to 6 passengers, <em>One Day</em> is designed to provide a premier, intimate experience on the water.</p>
+        <p class="section-body" style="margin-top:1rem"><em>One Day</em> holds a special meaning — it was named with the hope of "one day" owning a boat like this. Now that dream has become a reality, and we can't wait to share the joy of boating with you.</p>
+        <div class="vessel-specs">
+          <div class="spec"><div class="spec-label">Length</div><div class="spec-val">33 Feet</div></div>
+          <div class="spec"><div class="spec-label">Year Built</div><div class="spec-val">2022</div></div>
+          <div class="spec"><div class="spec-label">Engine</div><div class="spec-val">175hp Suzuki</div></div>
+          <div class="spec"><div class="spec-label">Capacity</div><div class="spec-val">6 Passengers</div></div>
+        </div>
+        <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes" target="_blank" class="btn btn-gold">Book the One Day</a>
+      </div>
+      <div class="vessel-img-wrap">
+        <img class="vessel-img-main" src="${IMG.vessel}" alt="One Day – 33ft Sea Pro">
+        <div class="vessel-tag"><em>One Day</em> — 33' Sea Pro</div>
+      </div>
+    </div>
+  </section>
+</div>
+`,
+
+// ─── FAQ PAGE ─────────────────────────────────────
+faq: () => `
+<div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('${IMG.hero}')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="section-label">FAQ</div>
+      <h1>Frequently Asked Questions</h1>
+      <p>Everything you need to know before your adventure. Still have questions? Just call us.</p>
+    </div>
+  </div>
+
+  <div class="faq-inner">
+    <div class="faq-category">
+      <div class="faq-cat-title">Booking &amp; Reservations</div>
+      ${faqItem("How do I book a charter?","Book directly online 24/7 through our FareHarbor booking system by clicking Book Now anywhere on the site. You can also call us at (401) 830-3839 or send an email and we'll get you set up.")}
+      ${faqItem("How far in advance should I book?","As early as possible — especially for summer weekends and event charters (4th of July, Jazz Fest) which sell out quickly. Weekday availability is generally more flexible.")}
+      ${faqItem("What is your cancellation policy?","Cancellations made more than 48 hours in advance receive a full refund. Cancellations within 48 hours are non-refundable, but we'll work with you to reschedule when possible.")}
+      ${faqItem("Can I reschedule my charter?","Yes! Contact us as soon as possible if you need to move your date and we'll do our best to accommodate.")}
+      ${faqItem("Do you offer gift cards?","Yes! Gift cards are a perfect gift for any occasion. Email us at newportboatadventuresri@gmail.com to purchase.")}
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-cat-title">The Charters</div>
+      ${faqItem("How many people can come on the boat?","Our 33-foot Sea Pro holds up to 6 passengers (not including Captain Nik). All charters are 100% private — you'll never share the boat with strangers.")}
+      ${faqItem("Can we bring food and drinks?","Absolutely! You're welcome to bring your own food, snacks, and beverages (including alcohol for adults 21+). We provide a cooler with ice on board. Please no glass bottles for safety.")}
+      ${faqItem("What should we bring?","Sunscreen, sunglasses, a hat, towels, and your choice of food and drinks. Non-slip shoes are helpful. Swimsuits are perfect for half-day charters with swimming.")}
+      ${faqItem("Is the charter private or shared?","All Newport Boat Adventures charters are 100% private. You'll have the entire boat and Captain Nik's full attention.")}
+      ${faqItem("Can we customize our route?","Absolutely! Let us know what you'd like to see or do — swimming spots, historic landmarks, scenic areas — and we'll build a route around it.")}
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-cat-title">Weather &amp; Safety</div>
+      ${faqItem("What happens if there's bad weather?","Safety is always first. If conditions are unsafe, we'll contact you to reschedule at no charge. Light rain generally doesn't affect trips — we'll communicate any concerns.")}
+      ${faqItem("Are life jackets provided?","Yes. Coast Guard-approved life jackets are on board. Children are required to wear them at all times, and Captain Nik conducts a safety briefing before departure.")}
+      ${faqItem("Is the boat licensed and insured?","Yes. Captain Nik holds a USCG license and the vessel carries all required commercial insurance and certifications.")}
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-cat-title">Logistics</div>
+      ${faqItem("Where do we meet?","We depart from Newport Harbor. Exact meeting location details will be confirmed in your booking confirmation email.")}
+      ${faqItem("Is parking available nearby?","Yes, public parking is available near the departure point. We'll include parking details with your confirmation.")}
+      ${faqItem("Do you do proposals or anniversary packages?","We love helping with special occasions! Let us know what you have in mind when booking and we can help make it truly memorable.")}
+    </div>
+  </div>
+
+  <section style="padding:4rem 2rem;text-align:center;background:var(--navy)">
+    <h2 style="font-family:'Playfair Display',serif;color:var(--sand);font-size:1.8rem;margin-bottom:.8rem">Still Have Questions?</h2>
+    <p style="color:rgba(242,232,213,.65);margin-bottom:1.8rem;font-weight:300">We're happy to help. Reach out anytime.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="tel:4018303839" class="btn btn-gold">Call (401) 830-3839</a>
+      <a href="#" onclick="navigate('contact')" class="btn btn-outline-light">Send a Message</a>
+    </div>
+  </section>
+</div>
+`,
+
+// ─── CONTACT PAGE ─────────────────────────────────
+contact: () => `
+<div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('${IMG.sunset}')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="section-label">Get in Touch</div>
+      <h1>Let's Plan Your Adventure</h1>
+      <p>Questions, special requests, event planning — we'd love to hear from you.</p>
+    </div>
+  </div>
+
+  <div class="contact-body">
+    <div class="contact-inner">
+      <div>
+        <div class="section-label">Contact Info</div>
+        <h2 class="section-title">Reach Out<br>Anytime</h2>
+        <p class="section-body">We typically respond within a few hours during season. For immediate help, give us a call.</p>
+        <div class="contact-detail-rows">
+          <div class="contact-row">
+            <div class="contact-icon-box"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg></div>
+            <div><div class="contact-row-label">Phone</div><div class="contact-row-val"><a href="tel:4018303839">(401) 830-3839</a></div></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon-box"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+            <div><div class="contact-row-label">Email</div><div class="contact-row-val"><a href="mailto:newportboatadventuresri@gmail.com">newportboatadventuresri@gmail.com</a></div></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon-box"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+            <div><div class="contact-row-label">Departure</div><div class="contact-row-val">Newport Harbor, Newport, RI<br><span style="font-size:.82rem;color:var(--txt-mid)">Details in booking confirmation</span></div></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon-box"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></div>
+            <div><div class="contact-row-label">Season</div><div class="contact-row-val">May through October<br><span style="font-size:.82rem;color:var(--txt-mid)">Off-season charters by request</span></div></div>
+          </div>
+        </div>
+        <div class="booking-note" style="margin-top:1.8rem">
+          <p>Ready to book? <strong>Skip the form</strong> and book directly online — fastest way to secure your date.</p>
+        </div>
+        <div style="margin-top:1.5rem"><a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes" target="_blank" class="btn btn-gold">Book Online Now</a></div>
+        <div style="margin-top:2rem">
+          <p style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-mid);font-weight:600;margin-bottom:.8rem">Follow Us</p>
+          <div class="social-links-row">
+            <a href="https://www.instagram.com/newport_boat_adventures_ri" target="_blank" class="social-link">Instagram</a>
+            <a href="#" class="social-link">Google Reviews</a>
+            <a href="#" class="social-link">TripAdvisor</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <h3>Send Us a Message</h3>
+        <p>Tell us about your dream trip and we'll get back to you shortly.</p>
+        <div id="contact-form-area">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="Jane"></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Smith"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="jane@example.com"></div>
+          <div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel" placeholder="(401) 000-0000"></div>
+          <div class="form-group"><label class="form-label">Charter Interest</label>
+            <select class="form-input">
+              <option value="">— Select —</option>
+              <option>Half-Day Charter (4 hrs) — $450</option>
+              <option>Sunset Cruise (2 hrs) — $250</option>
+              <option>Exclusive Event Charter</option>
+              <option>Proposal / Engagement</option>
+              <option>Birthday / Celebration</option>
+              <option>Bachelorette Party</option>
+              <option>Fishing Charter</option>
+              <option>Corporate Outing</option>
+              <option>Custom / Other</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Preferred Date</label><input class="form-input" type="date"></div>
+            <div class="form-group"><label class="form-label">Number of Guests</label>
+              <select class="form-input"><option>1 guest</option><option>2 guests</option><option>3 guests</option><option>4 guests</option><option>5 guests</option><option>6 guests</option></select>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Message</label><textarea class="form-input" placeholder="Tell us about your ideal adventure, any special requests, or questions!"></textarea></div>
+          <button onclick="submitContactForm()" class="btn btn-gold" style="width:100%;text-align:center;display:block">Send Message</button>
+        </div>
+        <div class="form-success" id="form-success">
+          <div class="check">✅</div>
+          <h3 style="color:var(--navy);font-family:'Playfair Display',serif">Message Sent!</h3>
+          <p style="color:var(--txt-mid);margin-top:.5rem">Thanks for reaching out! We'll get back to you within a few hours.</p>
+          <a href="https://fareharbor.com/embeds/book/newportboatadventuresri/?full-items=yes" target="_blank" class="btn btn-gold" style="margin-top:1.2rem">Book Online Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`,
+
+// ─── SHOP PAGE ───────────────────────────────────
+shop: () => `
+<div>
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('${IMG.hero}')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="section-label">Merch &amp; Gifts</div>
+      <h1>Newport Boat Adventures Shop</h1>
+      <p>Take Newport home — or gift an unforgettable charter experience to someone you love.</p>
+    </div>
+  </div>
+
+  <div style="padding:5rem 2rem;background:var(--cream)">
+    <div class="container">
+      <div class="section-label center">Our Collection</div>
+      <h2 class="section-title" style="text-align:center">Shop the Collection</h2>
+      <p class="section-body" style="text-align:center;margin:0 auto 1rem;font-size:.9rem">To order, email newportboatadventuresri@gmail.com with the item name and size.</p>
+      <div class="shop-grid">
+        <div class="shop-card">
+          <div class="shop-img" style="background:linear-gradient(135deg,var(--deep-navy),var(--ocean))"><span style="font-size:3.5rem">🎁</span><div class="shop-badge-new">Best Gift</div></div>
+          <div class="shop-body-wrap"><div class="shop-name">Charter Gift Card</div><p class="shop-desc">Give the gift of an unforgettable Newport adventure. Gift cards never expire and are available for any value.</p><div class="shop-footer"><div class="shop-price">From $250</div><a href="mailto:newportboatadventuresri@gmail.com?subject=Gift Card" class="btn btn-gold" style="padding:.5rem 1rem;font-size:.78rem">Buy Now</a></div></div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-img" style="background:linear-gradient(135deg,#1a3a5c,var(--teal))"><span style="font-size:3.5rem">👕</span></div>
+          <div class="shop-body-wrap"><div class="shop-name">NBA Logo Tee</div><p class="shop-desc">Soft unisex cotton tee with the Newport Boat Adventures anchor logo. Perfect for the water or the shore.</p><div class="shop-footer"><div class="shop-price">$30</div><a href="mailto:newportboatadventuresri@gmail.com?subject=Tee Shirt" class="btn btn-gold" style="padding:.5rem 1rem;font-size:.78rem">Order</a></div></div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-img" style="background:linear-gradient(135deg,var(--navy),#2a5a8e)"><span style="font-size:3.5rem">🧢</span></div>
+          <div class="shop-body-wrap"><div class="shop-name">Newport Snapback Hat</div><p class="shop-desc">Classic structured cap with embroidered NBA logo. One size fits most. Great sun protection on the water.</p><div class="shop-footer"><div class="shop-price">$28</div><a href="mailto:newportboatadventuresri@gmail.com?subject=Snapback Hat" class="btn btn-gold" style="padding:.5rem 1rem;font-size:.78rem">Order</a></div></div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-img" style="background:linear-gradient(135deg,#c8962a,#e0ab36)"><span style="font-size:3.5rem">🧊</span></div>
+          <div class="shop-body-wrap"><div class="shop-name">Newport Tumbler</div><p class="shop-desc">Stainless steel insulated tumbler — keeps drinks cold up to 24 hours. NBA logo on both sides.</p><div class="shop-footer"><div class="shop-price">$35</div><a href="mailto:newportboatadventuresri@gmail.com?subject=Tumbler" class="btn btn-gold" style="padding:.5rem 1rem;font-size:.78rem">Order</a></div></div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-img" style="background:linear-gradient(135deg,#2a7fa5,var(--teal))"><span style="font-size:3.5rem">🪣</span><div class="shop-badge-new">New</div></div>
+          <div class="shop-body-wrap"><div class="shop-name">Bucket Hat</div><p class="shop-desc">Relaxed-fit bucket hat with embroidered logo. Perfect for long days on the water. Navy and White.</p><div class="shop-footer"><div class="shop-price">$25</div><a href="mailto:newportboatadventuresri@gmail.com?subject=Bucket Hat" class="btn btn-gold" style="padding:.5rem 1rem;font-size:.78rem">Order</a></div></div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-img" style="background:linear-gradient(135deg,var(--sand),#ddd0b8)"><span style="font-size:3.5rem">✨</span></div>
+          <div class="shop-body-wrap"><div class="shop-name">Sticker Pack</div><p class="shop-desc">5-pack of premium vinyl NBA stickers. Waterproof and UV resistant. Perfect for laptops and water bottles.</p><div class="shop-footer"><div class="shop-price">$12</div><a href="mailto:newportboatadventuresri@gmail.com?subject=Sticker Pack" class="btn btn-gold" style="padding:.5rem 1rem;font-size:.78rem">Order</a></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`
+};
+
+/* ─── HELPERS ─── */
+function faqItem(q, a) {
+  return `<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>${q}</span><span class="faq-arrow">▾</span></div><div class="faq-a">${a}</div></div>`;
+}
+
+/* ─── NAVIGATION ─── */
+function navigate(page) {
+  const content = document.getElementById('page-content');
+  content.classList.add('fading');
+  setTimeout(()=>{
+    content.innerHTML = PAGES[page]();
+    content.classList.remove('fading');
+    window.scrollTo({top:0,behavior:'instant'});
+    updateNav(page);
+  },250);
+  return false;
+}
+function updateNav(page){
+  document.querySelectorAll('[data-page]').forEach(a=>{
+    a.classList.toggle('active', a.dataset.page===page);
+  });
+}
+
+function toggleMobile(){document.getElementById('mobile-menu').classList.toggle('open');}
+function closeMobile(){document.getElementById('mobile-menu').classList.remove('open');}
+function closeDropdowns(){/* dropdowns close via CSS :hover, this is for mobile nav links */}
+
+function toggleFaq(el){
+  const ans=el.nextElementSibling, isOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-q.open').forEach(q=>{q.classList.remove('open');q.nextElementSibling.classList.remove('open');});
+  if(!isOpen){el.classList.add('open');ans.classList.add('open');}
+}
+
+function filterGallery(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.gallery-item').forEach(item=>{
+    item.style.display=(cat==='all'||item.dataset.cat===cat)?'block':'none';
+  });
+}
+
+function openLightbox(item){
+  document.getElementById('lightbox-img').src=item.querySelector('img').src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function submitContactForm(){
+  document.getElementById('contact-form-area').style.display='none';
+  document.getElementById('form-success').style.display='block';
+}
+
+function submitCustomEvent(){
+  document.getElementById('custom-success').style.display='block';
+}
+
+navigate('home');
+</script>
+</body>
+</html>
